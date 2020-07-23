@@ -9,6 +9,4 @@ def index(request):
 
 def shoes(request):
     """Shoe all shoes"""
-    # shoes = shoe_data.objects.order_by('date_added')
-    # context = {'topics': topics}
     return render(request, 'shoe_tab/shoe_tab.html', retrieveData("Nike"))

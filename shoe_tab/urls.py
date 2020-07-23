@@ -5,5 +5,6 @@ from . import views
 
 app_name = 'shoe_tab'
 urlpatterns = [
-    path('', views.index, name = 'index')
+    path('', views.index, name = 'index'),
+    path(''. views.index, name = 'shoes')
 ]
