@@ -33,6 +33,7 @@ def retrieveData(brand):
         else:
             monthVal = f"{z}"
 
+        print(f'https://solecollector.com/sneaker-release-dates/{shoe_brand[brand]}/{year}/{monthVal}/')
         #requests the url
         response = requests.get(f'https://solecollector.com/sneaker-release-dates/{shoe_brand[brand]}/{year}/{monthVal}/')
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -50,5 +51,7 @@ def retrieveData(brand):
                 "Image": str(release_images[x].find_all('img', src = True)[0]['src'])
 
             })
+        
+        
     
     return data['releases']

@@ -2,6 +2,5 @@
 
 ## Checklist
 * Create basic layout
-* Connect to front end
-* Instatiate automated webscraping
-
+* Connect to front end  
+* ~~Instatiate automated webscraping~~ 
