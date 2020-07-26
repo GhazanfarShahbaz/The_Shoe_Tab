@@ -1,1 +1,1 @@
-web: gunicorn The_Shoe_Tab.wsgi --log-fle -
+web: gunicorn The_Shoe_Tab.wsgi --log-file -

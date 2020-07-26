@@ -11,9 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import django_heroku
-
-django_heroku.settings(locals())
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,7 +25,7 @@ SECRET_KEY = 'y+&f+!gqxul891$q1y)qr4s2=0ocgk37x1g&e&sikwd7%29%6t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['the-shoe-tab.herokuapp.com']
 
 
 # Application definition
@@ -121,4 +118,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+# STATIC_URL = '/static/'
+# if DEBUG:
+#    STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, 'static'),
+#    ]
+# else:
+#    STATIC_ROOT = os.path.join(BASE_DIR,'static')
+
+
+# import django_heroku
+
+# django_heroku.settings (locals())
