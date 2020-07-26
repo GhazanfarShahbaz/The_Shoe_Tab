@@ -1,5 +1,89 @@
-<p>
-    <a href = "{% url 'shoe_tab:index' %}">The Shoe Tab</a>
-</p>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css?family=Advent+Pro&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+    body,html{
+        height: 100%;
+        font-family: "Advent Pro", sans-serif; 
+    }
+    .bgimg {
+    background-position: center;
+    background-size: cover;
+    background-image: url();
+    min-height: 75%;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    #body{
+        background-color: #D3D3D3;
+    }
+    .card {
+        transition: 0.3s;
+        width: 25%;
+        border-radius: 5px;
+        float: left;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 10px;
+        padding-left: 5px;
+        padding-right: 5px; 
+        overflow: hidden;
+        font-size: small;
+    }
+    .addeventatc:hover{
+        background-color: #751710!important;
+        color: white!important;
+    }
+    .addeventatc{
+        z-index: 2!important;
+        width: 300
+    }
+
+    .container{
+        display:flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
 
 {% block content %}{% endblock content %}
+
+<script>
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+    }
+        
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+    showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+    showSlides(slideIndex = n);
+    }
+    function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}
+    slides[slideIndex-1].style.display = "block";
+    setTimeout(showSlides, 2000); 
+    }
+</script>

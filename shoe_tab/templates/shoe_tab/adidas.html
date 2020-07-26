@@ -1,0 +1,37 @@
+{% extends "shoe_tab/base.html" %}
+{% block content %}
+
+<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()"
+    class="w3-bar-item w3-button">Close Menu</a>
+    <a href= "{% url 'shoe_tab:index' %}"w3-bar-item w3-button">Home Page</a>
+    <a href= "{% url 'shoe_tab:nike' %}"w3-bar-item w3-button">Nike</a>
+    <a href= "{% url 'shoe_tab:air_jordan' %}" w3-bar-item w3-button">Air Jordan</a>
+</nav>
+
+<div id = "tab" class = "w3-top">
+    <div class="w3-white w3-xlarge" id = "elipses">
+    <div id = "elipsesVert" class="w3-button w3-padding-16 w3-left" onclick="w3_open()"><i class="fa fa-bars" style="font-size:36px;"></i></div>   
+</div>
+
+
+<div class = "container">
+    {% for key in data %}
+        <div class = "card">
+            <div title="Add to Calendar" class="addeventatc">
+                Add to Calendar
+                <span class="start">{{ key.Release_Date }}</span>
+                <span class="end">{{ key.Release_Date }}</span>
+                <span class="timezone">America/Los_Angeles</span>
+                <span class="alarm_reminder">15</span>
+                <span class="title">Summary of the event</span>
+                <span class="description">Description of the event</span>
+                <span class="location">Location of the event</span>
+            </div>
+            <h5>{{ key.Shoe_Name }}</h1>
+            <img src = {{ key.Image }} width = "300" height = "200">
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}
