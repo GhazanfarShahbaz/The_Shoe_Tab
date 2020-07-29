@@ -25,7 +25,7 @@ SECRET_KEY = 'y+&f+!gqxul891$q1y)qr4s2=0ocgk37x1g&e&sikwd7%29%6t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['the-shoe-tab.herokuapp.com']
+ALLOWED_HOSTS = ['the-shoe-tab.herokuapp.com','127.0.0.1']
 
 
 # Application definition
