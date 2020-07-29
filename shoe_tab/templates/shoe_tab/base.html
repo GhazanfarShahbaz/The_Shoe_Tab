@@ -55,19 +55,34 @@
         align-items: center;
         justify-content: center;
     }
-
     img{
         width: 100%;
         height: 35%;
     }
-
     h5{
         font-size: 20px;
     }
 
+    .TitleHeader{
+        text-align: center;
+        font-size: 36px;
+    }
+
+    #elipsesVert{
+        background-color: #D3D3D3;
+    }
+
+
+
+
+
 </style>
 
-{% block content %}{% endblock content %}
+{% block content %}
+
+    {{ body }}
+
+{% endblock content %}
 
 <script>
     function w3_open() {
