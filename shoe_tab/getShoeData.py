@@ -19,7 +19,7 @@ def retrieveData(brand):
     yearChange = False
 
     for months in range(month,month+3):
-        #if z > 12 then that means the year must change
+        #if z > 12 then thar means the year must change
         if(months > 12):
             if(not yearChange):
                 year += 1
@@ -44,22 +44,20 @@ def retrieveData(brand):
         release_prices = soup.find_all('span', class_='sneaker-release__option')
 
         #traverses the response and gets adds the name,data and image to a dictionary
-
-
         for x in range(len(releases)):
-
+            #Removes color styles from shoe name
             shoe_name = releases[x]['data-release-name']
             if('/' in shoe_name):
-                shoe_name = shoe_name[0 : shoe_name.find("/")][0:  shoe_name.rfind(" ")]
+                shoe_name = shoe_name[0 : shoe_name.find("/")][0 : shoe_name.rfind(" ")]
                 
-
+            #Appends the data to a dictionary list
             data['releases'].append({
                 "Shoe_Name": shoe_name,
                 'Release_Date': releases[x]['data-date'][:releases[x]['data-date'].rfind(' ')],
                 'Release_Time':  releases[x]['data-date'][releases[x]['data-date'].rfind(' '):],
                 "Image": str(release_images[x].find_all('img', src = True)[0]['src']),
                 "Price": release_prices[x].text
-
             })
-            
+    
+    #Returns the data back to views.py
     return data['releases']

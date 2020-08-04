@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .models import shoe_data
 from django.http import JsonResponse
-# Create your views here.
 from shoe_tab.getShoeData import retrieveData
 
 def index(request):
@@ -13,7 +12,7 @@ def adidas(request):
     return render(request, 'shoe_tab/adidas.html', {'data': retrieveData("Adidas")})
 
 def nike(request):
-    """Shows all adidas releases"""
+    """Shows all Nike releases"""
     return render(request, 'shoe_tab/nike.html', {'data': retrieveData("Nike")})
 
 def air_jordan(request):
