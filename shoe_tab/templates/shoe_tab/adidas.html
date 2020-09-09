@@ -25,41 +25,42 @@
             <div class = "card">
                 <div title="Add to Calendar" class="addeventatc">
                     Add to Calendar
-                    <span class="start">{{ key.Release_Date }}</span>
-                    <span class="end">{{ key.Release_Date }}</span>
+                    <span class="start">{{ key.release_date }}</span>
+                    <span class="end">{{ key.release_date }}</span>
                     <span class="timezone">America/Los_Angeles</span>
                     <span class="alarm_reminder">15</span>
                     <span class="title">Summary of the event</span>
                     <span class="description">Description of the event</span>
                     <span class="location">Location of the event</span>
                 </div>
-                <h5>{{ key.Shoe_Name }}</h1>
-                <img src = {{ key.Image }}>
-                <h5>Price: {{ key.Price }}</h1>
+                <h5>{{ key.shoe_name }}</h1>
+                <img src = {{ key.image }}>
+                <h5>Price: {{ key.price }}</h1>
             </div>
         {% endfor %}
     </div>
 {% endif %}
 
+
 <h5 style = "text-align: center;">Upcoming Releases</h5>
 <div class = "container">
-        {% for key in releases %}
-            <div class = "card" >
-                <div title="Add to Calendar" class="addeventatc">
-                    Add to Calendar
-                    <span class="start">{{ key.Release_Date }}</span>
-                    <span class="end">{{ key.Release_Date }}</span>
-                    <span class="timezone">America/Los_Angeles</span>
-                    <span class="alarm_reminder">15</span>
-                    <span class="title">Summary of the event</span>
-                    <span class="description">Description of the event</span>
-                    <span class="location">Location of the event</span>
-                </div>
-                <h5>{{ key.Shoe_Name }}</h1>
-                <img src = {{ key.Image }}>
-                <h5>Price: {{ key.Price }}</h1>
+    {% for key in releases %}
+        <div class = "card">
+            <div title="Add to Calendar" class="addeventatc">
+                Add to Calendar
+                <span class="start">{{ key.release_date }}</span>
+                <span class="end">{{ key.release_date }}</span>
+                <span class="timezone">America/Los_Angeles</span>
+                <span class="alarm_reminder">15</span>
+                <span class="title">Summary of the event</span>
+                <span class="description">Description of the event</span>
+                <span class="location">Location of the event</span>
             </div>
-        {% endfor %}
+            <h5>{{ key.shoe_name }}</h1>
+            <img src = {{ key.image }}>
+            <h5>Price: {{ key.price }}</h1>
+        </div>
+    {% endfor %}
 </div>
 {% endblock content %}
 

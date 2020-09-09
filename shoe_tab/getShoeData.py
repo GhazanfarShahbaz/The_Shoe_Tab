@@ -1,6 +1,5 @@
 import requests
 import pandas as pd
-import sqlite3
 from bs4 import BeautifulSoup
 from time import gmtime
 from .models import Shoe
@@ -14,12 +13,14 @@ shoe_brand = {
 }
 
 # Note: This list needs to be added to
-hypeList = ['OffWhite', 'Bred', 'Dior', 'Royal', ' x ', ' X ', 'Off', ' off ']
+hypeList = ['OffWhite', 'Bred', 'Dior', 'Royal', ' x ', ' X ', 'Off', ' off ', 'Toe']
 
 
-def gate():
-    """Meant to see if data is already in db or should be updated"""
-    return "PLACEHOLDER"
+def gate(brand):
+    """Used to see wether or not the calender data needs updating or not"""
+    if gmtime().tm_mday == 1:
+        return retrieveData(brand)
+    return Shoe.objects.filter(shoe_brand=brand, hyped = False), Shoe.objects.filter(shoe_brand=brand, hyped = True)
 
 
 def retrieveData(brand):
@@ -64,6 +65,7 @@ def retrieveData(brand):
                 shoe_name = shoe_name[0 : shoe_name.find("/")][0:shoe_name.rfind(" ")]
             # Appends the data to a dictionary list
             new_shoe = Shoe()
+            new_shoe.shoe_name = shoe_name
             new_shoe.shoe_brand = brand
             new_shoe.release_date = releases[x]['data-date'][:releases[x]['data-date'].rfind(' ')]
             new_shoe.release_time = releases[x]['data-date'][releases[x]['data-date'].rfind(' '):]
@@ -73,31 +75,6 @@ def retrieveData(brand):
 
             if new_shoe not in Shoe.objects.all():
                 new_shoe.save()
-                # Shoe.save()
-
-            data['releases'].append({
-                "Shoe_Name": shoe_name,
-                'Release_Date': releases[x]['data-date'][:releases[x]['data-date'].rfind(' ')],
-                'Release_Time': releases[x]['data-date'][releases[x]['data-date'].rfind(' '):],
-                "Image": str(release_images[x].find_all('img', src=True)[0]['src']),
-                "Price": release_prices[x].text
-            })
-            if isHyped(shoe_name):
-                data['hyped'].append({
-                    "Shoe_Name": shoe_name,
-                    'Release_Date': releases[x]['data-date'][:releases[x]['data-date'].rfind(' ')],
-                    'Release_Time': releases[x]['data-date'][releases[x]['data-date'].rfind(' '):],
-                    "Image": str(release_images[x].find_all('img', src=True)[0]['src']),
-                    "Price": release_prices[x].text
-                })
-
-    # print(Shoe.objects.all().values())
-    print(len(Shoe.objects.all()))
-    Shoe.objects.all().delete()
-    print(len(Shoe.objects.all()))
-    # Returns the data back to views.py
-    return data['releases'], data['hyped'] 
-
 
 def isHyped(shoe_name):
     """Checked if shoe is hyped or not"""
