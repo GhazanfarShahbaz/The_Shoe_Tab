@@ -1,7 +1,6 @@
 from django.shortcuts import render
-from .models import shoe_data
 from django.http import JsonResponse
-from shoe_tab.getShoeData import retrieveData
+from shoe_tab.getShoeData import gate
 
 
 def index(request):
@@ -11,17 +10,17 @@ def index(request):
 
 def adidas(request):
     """Shows all adidas releases"""
-    allReleases, hyped = retrieveData("Adidas")
+    allReleases, hyped = gate("Adidas")
     return render(request, 'shoe_tab/adidas.html', {'releases': allReleases, 'hyped': hyped})
 
 
 def nike(request):
     """Shows all Nike releases"""
-    allReleases, hyped = retrieveData("Nike")
+    allReleases, hyped = gate("Nike")
     return render(request, 'shoe_tab/nike.html', {'releases': allReleases, 'hyped': hyped})
 
 
 def air_jordan(request):
     """Shows all jordan releases"""
-    allReleases, hyped = retrieveData("Air Jordan")
+    allReleases, hyped = gate("Air Jordan")
     return render(request, 'shoe_tab/air_jordan.html', {'releases': allReleases, 'hyped': hyped})
