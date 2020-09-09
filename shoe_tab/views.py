@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from .models import shoe_data
 from django.http import JsonResponse
 from shoe_tab.getShoeData import retrieveData
 
