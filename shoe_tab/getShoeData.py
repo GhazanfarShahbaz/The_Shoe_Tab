@@ -15,13 +15,13 @@ shoe_brand = {
 # Note: This list needs to be added to
 hypeList = ['OffWhite', 'Bred', 'Dior', 'Royal', ' x ', ' X ', 'Off', ' off ', 'Toe']
 
-
+def allData():
+    return Shoe.objects.filter(hyped = True)
 def gate(brand):
     """Used to see wether or not the calender data needs updating or not"""
     if gmtime().tm_mday == 1:
         return retrieveData(brand)
-    return Shoe.objects.filter(shoe_brand=brand, hyped = False), Shoe.objects.filter(shoe_brand=brand, hyped = True)
-
+    return Shoe.objects.filter(shoe_brand=brand, hyped=False), Shoe.objects.filter(shoe_brand=brand, hyped = True)
 
 def retrieveData(brand):
     """Retrieves the shoe data for shoe by brand"""

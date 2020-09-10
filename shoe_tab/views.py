@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from shoe_tab.getShoeData import gate
+from shoe_tab.getShoeData import allData
 
 
 def index(request):
-    "The home page for the shoe tab"
-    return render(request, 'shoe_tab/index.html')
+    """The home page for the shoe tab"""
+    return render(request, 'shoe_tab/index.html', {'dataBlock': allData()})
 
 
 def adidas(request):
@@ -24,3 +25,7 @@ def air_jordan(request):
     """Shows all jordan releases"""
     allReleases, hyped = gate("Air Jordan")
     return render(request, 'shoe_tab/air_jordan.html', {'releases': allReleases, 'hyped': hyped})
+
+
+def calender(request):
+    """Will contain a calender of everything in the database"""

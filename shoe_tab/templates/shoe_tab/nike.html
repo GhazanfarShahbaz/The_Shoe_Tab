@@ -32,7 +32,11 @@
                     <span class="location">Location of the event</span>
                 </div>
                 <h5>{{ key.shoe_name }}</h1>
-                <img src = {{ key.image }}>
+                {% if key.image != "https://images.solecollector.com/complex/image/upload/v1557176412/SC_Logo_Globe_TM_Blue_20190506-01-01-01_urcggx.svg" %}
+                    <img src = {{ key.image }}>
+                {% else %}
+                    <img src = "https://www.reaganfoundation.org/umbraco/ucommerce/images/ui/image_not_found.jpg">
+                {% endif %}
                 <h5>Price: {{ key.price }}</h1>
             </div>
         {% endfor %}
