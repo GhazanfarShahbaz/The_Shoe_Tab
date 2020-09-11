@@ -20,8 +20,13 @@ def allData():
 def gate(brand):
     """Used to see wether or not the calender data needs updating or not"""
     if gmtime().tm_mday == 1:
-        return retrieveData(brand)
-    return Shoe.objects.filter(shoe_brand=brand, hyped=False), Shoe.objects.filter(shoe_brand=brand, hyped = True)
+        retrieveData(brand)
+
+    year = gmtime().tm_year
+    month = gmtime().tm_mon
+    day = gmtime().tm_mday
+
+    return Shoe.objects.filter(shoe_brand=brand,hyped=False, release_day__gte=day, release_month__gte= month, release_year__gte=year ), Shoe.objects.filter(shoe_brand=brand, hyped = True, release_day__gte=day, release_month__gte= month, release_year__gte=year )
 
 def retrieveData(brand):
     """Retrieves the shoe data for shoe by brand"""
@@ -64,10 +69,15 @@ def retrieveData(brand):
             if('/' in shoe_name):
                 shoe_name = shoe_name[0 : shoe_name.find("/")][0:shoe_name.rfind(" ")]
             # Appends the data to a dictionary list
+
+            date = releases[x]['data-date'][:releases[x]['data-date'].rfind(' ')].split('/')
+
             new_shoe = Shoe()
             new_shoe.shoe_name = shoe_name
             new_shoe.shoe_brand = brand
-            new_shoe.release_date = releases[x]['data-date'][:releases[x]['data-date'].rfind(' ')]
+            new_shoe.release_day = int(date[1])
+            new_shoe.release_month = int(date[0])
+            new_shoe.release_year = int("20" + str(date[2]))
             new_shoe.release_time = releases[x]['data-date'][releases[x]['data-date'].rfind(' '):]
             new_shoe.image = str(release_images[x].find_all('img', src=True)[0]['src'])
             new_shoe.price = release_prices[x].text
