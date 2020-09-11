@@ -17,6 +17,7 @@ hypeList = ['OffWhite', 'Bred', 'Dior', 'Royal', ' x ', ' X ', 'Off', ' off ', '
 
 def allData():
     return Shoe.objects.filter(hyped = True)
+
 def gate(brand):
     """Used to see wether or not the calender data needs updating or not"""
     if gmtime().tm_mday == 1:
@@ -25,7 +26,6 @@ def gate(brand):
     year = gmtime().tm_year
     month = gmtime().tm_mon
     day = gmtime().tm_mday
-
     return Shoe.objects.filter(shoe_brand=brand,hyped=False, release_day__gte=day, release_month__gte= month, release_year__gte=year ), Shoe.objects.filter(shoe_brand=brand, hyped = True, release_day__gte=day, release_month__gte= month, release_year__gte=year )
 
 def retrieveData(brand):
