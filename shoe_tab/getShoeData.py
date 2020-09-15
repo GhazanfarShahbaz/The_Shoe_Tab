@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 from time import gmtime
 from .models import Shoe
 
-
 # Shoe brands link headers
 shoe_brand = {
     'Nike': 'nike-release-dates',
@@ -15,8 +14,10 @@ shoe_brand = {
 # Note: This list needs to be added to
 hypeList = ['OffWhite', 'Bred', 'Dior', 'Royal', ' x ', ' X ', 'Off', ' off ', 'Toe']
 
+
 def allData():
     return Shoe.objects.filter(hyped = True)
+
 
 def gate(brand):
     """Used to see wether or not the calender data needs updating or not"""
@@ -25,7 +26,9 @@ def gate(brand):
     month = gmtime().tm_mon
     if day == 1 or day == 11 or day == 21:
         retrieveData(year, month)
-    return Shoe.objects.filter(shoe_brand=brand,hyped=False, release_day__gte=day, release_month__gte= month, release_year__gte=year ), Shoe.objects.filter(shoe_brand=brand, hyped = True, release_day__gte=day, release_month__gte= month, release_year__gte=year )
+
+    return Shoe.objects.filter(shoe_brand=brand,hyped=False, release_day__gte=day, release_month__gte= month, release_year__gte=year ), Shoe.objects.filter(shoe_brand=brand, hyped = True, release_day__gte=day, release_month__gte= month, release_year__gte=year)
+
 
 def retrieveData(year, month):
     """Retrieves the shoe data for shoe by brand"""
@@ -36,7 +39,7 @@ def retrieveData(year, month):
 
     yearChange = False
     for brand in shoe_brand:
-        for months in range(month, month+3):
+        for months in range(month, month+4):
             # if z > 12 then thar means the year must change
             if(months > 12):
                 if(not yearChange):
@@ -69,8 +72,8 @@ def retrieveData(year, month):
 
                 date = releases[x]['data-date'][:releases[x]['data-date'].rfind(' ')].split('/')
                 
-                #To make sure that data is not duplicated
-                if Shoe.objects.filter(shoe_name= shoe_name).exists():
+                # To make sure that data is not duplicated
+                if Shoe.objects.filter(shoe_name=shoe_name).exists():
                     continue
                 else:
                     new_shoe = Shoe()
@@ -84,6 +87,7 @@ def retrieveData(year, month):
                     new_shoe.price = release_prices[x].text
                     new_shoe.hyped = isHyped(shoe_name)
                     new_shoe.save()
+
 
 def isHyped(shoe_name):
     """Checked if shoe is hyped or not"""
